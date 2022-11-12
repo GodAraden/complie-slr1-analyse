@@ -61,6 +61,11 @@ const startAnalyse = function () {
   const { ACTION, GOTO, log } = syntaxAnalyse(store.token)
   if (log.some((v) => v.err)) {
     message.error('语法分析出现错误，请检查')
+    store.action = ACTION
+    store.goto = GOTO
+    store.log = log
+    analyseDone.value = false
+    return
   }
   store.action = ACTION
   store.goto = GOTO
